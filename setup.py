@@ -8,7 +8,7 @@ from setuptools import setup  # type: ignore
 dir_ = Path(__file__).parent
 
 # get the version to include in setup()
-with open(f'{dir_}/asyncio_generator_converter.py') as fh:
+with open(f'{dir_}/asyncio_generator_converter/__init__.py') as fh:
     for line in fh:
         if '__version__' in line:
             exec(line)
@@ -21,7 +21,8 @@ setup(
     author='Kyle Smith',
     author_email='smithk86@gmail.com',
     url='https://github.com/smithk86/asyncio-generator-converter',
-    py_modules=['asyncio-generator-converter'],
+    package_data={"asyncio_generator_converter": ["py.typed"]},
+    packages=['asyncio_generator_converter'],
     description='convert a normal generator to an async generator with a decorator',
     install_requires=[
         'janus'

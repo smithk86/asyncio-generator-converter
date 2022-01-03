@@ -1,5 +1,3 @@
-import _path_patch
-
 from os import urandom
 
 import pytest  # type: ignore
@@ -27,7 +25,7 @@ def random_data_generator():
 def throw_exception():
     yield urandom(16)
     yield urandom(16)
-    raise Exception('this is an exception')
+    raise Exception("this is an exception")
 
 
 @pytest.mark.asyncio
@@ -52,7 +50,7 @@ async def test_request_early_terminate():
 
 @pytest.mark.asyncio
 async def test_exception():
-    with pytest.raises(Exception, match='this is an exception'):
+    with pytest.raises(Exception, match="this is an exception"):
         async for _data in throw_exception():
             pass
 

@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from typing import AsyncGenerator, Callable, Generator
 
 
-__version__ = '0.1.0'
+__version__ = '0.1.1-dev'
 __all__ = [
     '__version__',
     'asyncio_generator_converter'

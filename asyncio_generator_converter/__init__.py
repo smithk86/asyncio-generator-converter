@@ -29,7 +29,6 @@ def asyncio_generator_converter(func) -> Callable:
     async def wrapper(*args, **kwargs) -> AsyncGenerator:
         _executor: ThreadPoolExecutor = ThreadPoolExecutor(max_workers=1)
         _generator: Generator = func(*args, **kwargs)
-        # _queue: janus.Queue = janus.Queue(maxsize=1)
         _queue: janus.Queue = janus.Queue(maxsize=1)
         _task: asyncio.Task = asyncio.create_task(
             _run_consumer(_executor, partial(_consumer, _generator, _queue))

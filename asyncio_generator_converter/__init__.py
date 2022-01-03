@@ -12,11 +12,8 @@ if TYPE_CHECKING:
     from typing import AsyncGenerator, Callable, Generator
 
 
-__version__ = '0.1.1-dev'
-__all__ = [
-    '__version__',
-    'asyncio_generator_converter'
-]
+__version__ = "0.1.1-dev"
+__all__ = ["__version__", "asyncio_generator_converter"]
 
 
 def asyncio_generator_converter(func) -> Callable:
@@ -35,10 +32,7 @@ def asyncio_generator_converter(func) -> Callable:
         # _queue: janus.Queue = janus.Queue(maxsize=1)
         _queue: janus.Queue = janus.Queue(maxsize=1)
         _task: asyncio.Task = asyncio.create_task(
-            _run_consumer(
-                _executor,
-                partial(_consumer, _generator, _queue)
-            )
+            _run_consumer(_executor, partial(_consumer, _generator, _queue))
         )
 
         try:

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 import functools
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
@@ -12,14 +13,19 @@ if TYPE_CHECKING:
     from typing import AsyncGenerator, Callable, Generator
 
 
-__version__ = "0.1.1"
+__version__ = "0.1.2-dev"
 __all__ = ["__version__", "asyncio_generator_converter"]
+logger = logging.getLogger(__name__)
 
 
 def asyncio_generator_converter(func) -> Callable:
     def _consumer(generator: Generator, queue: janus.Queue) -> None:
-        for _data in generator:
-            queue.sync_q.put(_data)
+        logger.debug(f"starting consumer for {generator}")
+        try:
+            for _data in generator:
+                queue.sync_q.put(_data)
+        finally:
+            logger.debug(f"consumer done for {generator}")
 
     async def _run_consumer(executor: ThreadPoolExecutor, func: Callable):
         _loop: asyncio.AbstractEventLoop = asyncio.get_running_loop()

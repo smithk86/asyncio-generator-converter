@@ -53,6 +53,9 @@ def asyncio_generator_converter(func) -> Callable:
             # shutdown the executor
             _executor.shutdown()
             # throw an exception if it occured
-            _task.result()
+            if _task.done():
+                _task.result()
+            else:
+                _task.cancel()
 
     return wrapper

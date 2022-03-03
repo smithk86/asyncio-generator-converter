@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from typing import AsyncGenerator, Callable, Generator, List
 
 
-__version__ = "0.1.3-dev"
+__version__ = "0.1.3"
 __all__ = ["__version__", "asyncio_generator_converter"]
 logger = logging.getLogger(__name__)
 tasks: List[asyncio.Task] = list()

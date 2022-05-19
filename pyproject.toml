@@ -14,13 +14,13 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-janus = "^1.0.0"
+janus = "*"
 
 [tool.poetry.dev-dependencies]
-mypy = "^0.920"
-pytest = "^6.2"
-pytest-asyncio = "^0.16.0"
-pytest-mypy = "^0.8.1"
+mypy = "*"
+pytest = "*"
+pytest-asyncio = "*"
+pytest-mypy = "*"
 
 [tool.poetry.scripts]
 pytest = "pytest:main"
